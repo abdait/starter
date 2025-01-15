@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
     ] ;
     protected function schedule(Schedule $schedule): void
     {
-         $schedule->command('user:expire')->everyMinute();
+        $schedule->command('user:expire')->everyMinute()->withoutOverlapping();
+        $schedule->command('notify:email')->everyFiveMinutes()->withoutOverlapping();
     }
 
     /**
