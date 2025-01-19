@@ -43,3 +43,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('redirect/{service}', [SocialController::class, 'redirect']);
 Route::get('callback/{service}', [SocialController::class, 'callback']);
+
+Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers'])->name('get_offers');
+
+
+Route::group(['prefix'=>'offers'], function (){
+
+    Route::get('store', [App\Http\Controllers\CrudController::class, 'store'])->name('store');
+
+} );
