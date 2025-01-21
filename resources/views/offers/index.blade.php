@@ -81,64 +81,26 @@
 
     <div class="row g-5">
 
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">{{ __('messages.offers') }}</h4>
-        <form class="needs-validation" novalidate method="POST" action="{{ route('offers.store') }}">
-          <div class="row g-3">
-            @csrf
-            <div class="col-sm-12">
-              <label for="firstName" class="form-label">{{ __('messages.name en') }}</label>
-              <input type="text" class="form-control" name="name_en" id="firstName">
-              @error('name_en')
-              <small class='text-danger text-center text-small'>
-                    {{ $message }}
-                </small>
-              @enderror
-            </div>
-            <div class="col-sm-12">
-              <label for="firstName" class="form-label">{{ __('messages.name ar') }}</label>
-              <input type="text" class="form-control" name="name_ar" id="firstName">
-              @error('name_ar')
-              <small class='text-danger text-center text-small'>
-                    {{ $message }}
-                </small>
-              @enderror
-            </div>
-            <div class="col-sm-12">
-              <label for="lastName" class="form-label">{{ __('messages.price') }}</label>
-              <input type="text" class="form-control" name="price" id="lastName"  >
-              @error('price')
-               <small class='text-danger text-center text-small' >
-                {{ $message }}
-               </small>
-            @enderror
-
-            </div>
-            <div class="col-sm-12">
-                <label for="lastName" class="form-label">{{ __('messages.details en') }}</label>
-                <input type="text" class="form-control" name="details_en" id="lastName"  >
-                @error('details_en')
-                <small class='text-danger text-center text-small'>
-                    {{ $message }}
-                </small>
-                @enderror
-
-              </div>
-              <div class="col-sm-12">
-                <label for="lastName" class="form-label">{{ __('messages.details ar') }}</label>
-                <input type="text" class="form-control" name="details_ar" id="lastName"  >
-                @error('details_ar')
-                <small class='text-danger text-center text-small'>
-                    {{ $message }}
-                </small>
-                @enderror
-
-              </div>
-
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">{{ __('messages.save') }}</button>
-        </form>
-      </div>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{__('messages.name table')}}</th>
+                <th scope="col">{{__('messages.price')}}</th>
+                <th scope="col">{{__('messages.details table')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+               @foreach ( $offers  as $offer) 
+                <tr>
+                    <th scope="row">{{$offer->id}}</th>
+                    <td>{{$offer->name}}</td>
+                    <td>{{$offer->price}}</td>
+                    <td>{{$offer->details}}</td>
+                </tr>
+               @endforeach
+            </tbody>
+          </table>
     </div>
   </main>
 

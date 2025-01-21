@@ -6,13 +6,14 @@ use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class CrudController extends Controller
 {
-    public function get_offers (){
+    public function index (){
 
-        $offer = Offer::select('id','name')-> get();
-        return ($offer) ;
+        $offer = Offer::select('id','name_'.LaravelLocalization::getCurrentLocale() .' as name','price','details_'.LaravelLocalization::getCurrentLocale().' as details' )-> get();
+        return view ('offers.index')->with('offers', $offer) ;
 
     }
 
@@ -62,7 +63,7 @@ class CrudController extends Controller
        //     return redirect()->back()->withErrors($validator)->withInput($offers->all());
        // }
 
-        Offer::create(['name'=>$offers->name,'price'=>$offers->price,'details'=>$offers->details ]);
+        Offer::create(['name_en'=>$offers->name_en,'name_ar'=>$offers->name_ar,'price'=>$offers->price,'details_en'=>$offers->details_en,'details_ar'=>$offers->details_ar ]);
         return redirect()->back()->with(['Success'=>__('messages.Success')]);
 
     }
