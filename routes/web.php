@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SocialController;
 
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,9 +48,17 @@ Route::get('callback/{service}', [SocialController::class, 'callback']);
 Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers'])->name('get_offers');
 
 
-Route::group(['prefix'=>'offers'], function (){
 
-   // Route::get('store', [App\Http\Controllers\CrudController::class, 'store'])->name('store');
-   Route::get('create', [App\Http\Controllers\CrudController::class, 'create'])->name('offers.create');
-   Route::post('store', [App\Http\Controllers\CrudController::class, 'store'])->name('offers.store');
-} );
+
+    Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+    {
+        Route::group(['prefix'=>'offers'], function (){
+             // Route::get('store', [App\Http\Controllers\CrudController::class, 'store'])->name('store');
+
+             Route::get('index', [App\Http\Controllers\CrudController::class, 'index'])->name('offers.index');
+             Route::get('create', [App\Http\Controllers\CrudController::class, 'create'])->name('offers.create');
+             Route::post('store', [App\Http\Controllers\CrudController::class, 'store'])->name('offers.store');
+
+        });
+
+     } );

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,15 +17,15 @@ class CrudController extends Controller
     }
 
 
-    public function getmessages (){
+    /*  public function getmessages (){
 
         return  $messages=[
-            'name.required' => "le nom est obligatoire",
-            'name.unique:offers,name' => "le nom est unique",
-            'name.max:100' => "le nom est max 100",
-            'price.required' => "le prix est obligatoire",
-            'price.numeric' => "le prix est numerique",
-            'details.required' => "le detaille est obligatoire",
+            'name.required' => __('messages.name required'),
+            'name.unique' => __('messages.name unique'),
+            'name.max' => __('messages.name max'),
+            'price.required' => __('messages.price required'),
+            'price.numeric' => __('messages.price required'),
+            'details.required' => __('messages.details required'),
          ];
     }
 
@@ -35,7 +36,7 @@ class CrudController extends Controller
             'price'=>'required|numeric',
             'details'=> 'required',
         ];
-    }
+    }*/
 
 
    /* public function store (){
@@ -49,22 +50,20 @@ class CrudController extends Controller
         return view('offers.create');
 
     }
-    public function store (Request $offers){
+    public function store (OfferRequest $offers){
 
 
 
-        $messages = $this->getmessages();
-        $rules = $this ->getrules();
-        $validator = Validator::make($offers->all(), $rules,$messages);
+       // $messages = $this->getmessages();
+       // $rules = $this ->getrules();
+       // $validator = Validator::make($offers->all(), $rules,$messages);
 
-        if ($validator -> fails()){
-            return redirect()->back()->withErrors($validator)->withInput($offers->all());
-        }
+       // if ($validator -> fails()){
+       //     return redirect()->back()->withErrors($validator)->withInput($offers->all());
+       // }
 
         Offer::create(['name'=>$offers->name,'price'=>$offers->price,'details'=>$offers->details ]);
-
-
-        return redirect()->back()->with(['Success'=>'the offers add successfuly']);
+        return redirect()->back()->with(['Success'=>__('messages.Success')]);
 
     }
 

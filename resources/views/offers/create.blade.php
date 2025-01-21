@@ -44,21 +44,50 @@
           {{ Session::get("Success") }}
         </div>
     @endif
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
+                    </li>
+              @endforeach
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+
+
+
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="{{URL::asset('assets/brand/bootstrap-logo.svg')}}" alt="" width="72" height="57">
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      <h2>{{ __('messages.offers') }}</h2>
+
     </div>
 
     <div class="row g-5">
 
       <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Offres</h4>
+        <h4 class="mb-3">{{ __('messages.offers') }}</h4>
         <form class="needs-validation" novalidate method="POST" action="{{ route('offers.store') }}">
           <div class="row g-3">
             @csrf
             <div class="col-sm-12">
-              <label for="firstName" class="form-label">name</label>
+              <label for="firstName" class="form-label">{{ __('messages.name') }}</label>
               <input type="text" class="form-control" name="name" id="firstName">
               @error('name')
               <small class='text-danger text-center text-small'>
@@ -68,7 +97,7 @@
             </div>
 
             <div class="col-sm-12">
-              <label for="lastName" class="form-label">Price</label>
+              <label for="lastName" class="form-label">{{ __('messages.price') }}</label>
               <input type="text" class="form-control" name="price" id="lastName"  >
               @error('price')
                <small class='text-danger text-center text-small' >
@@ -78,7 +107,7 @@
 
             </div>
             <div class="col-sm-12">
-                <label for="lastName" class="form-label">Details</label>
+                <label for="lastName" class="form-label">{{ __('messages.details') }}</label>
                 <input type="text" class="form-control" name="details" id="lastName"  >
                 @error('details')
                 <small class='text-danger text-center text-small'>
@@ -89,7 +118,7 @@
               </div>
 
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">save offers</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">{{ __('messages.save') }}</button>
         </form>
       </div>
     </div>
