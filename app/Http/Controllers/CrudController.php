@@ -18,33 +18,7 @@ class CrudController extends Controller
     }
 
 
-    /*  public function getmessages (){
 
-        return  $messages=[
-            'name.required' => __('messages.name required'),
-            'name.unique' => __('messages.name unique'),
-            'name.max' => __('messages.name max'),
-            'price.required' => __('messages.price required'),
-            'price.numeric' => __('messages.price required'),
-            'details.required' => __('messages.details required'),
-         ];
-    }
-
-    public function getrules (){
-
-        return   $rules =[
-            'name'=>'required|max:100|unique:offers,name',
-            'price'=>'required|numeric',
-            'details'=> 'required',
-        ];
-    }*/
-
-
-   /* public function store (){
-
-        Offer::create(['name'=>'ait','price'=>'2000','details'=>'test' ]);
-
-    }*/
 
     public function create (){
 
@@ -52,23 +26,10 @@ class CrudController extends Controller
 
     }
     public function store (OfferRequest $offers){
-       // $messages = $this->getmessages();
-       // $rules = $this ->getrules();
-       // $validator = Validator::make($offers->all(), $rules,$messages);
-
-       // if ($validator -> fails()){
-       //     return redirect()->back()->withErrors($validator)->withInput($offers->all());
-       // }
-
-
 
 
        $offersTraid = new OffersTraid();
        $file_name = $offersTraid->saveImages($offers->photo, 'images/offers');
-
-
-
-
 
 
         Offer::create(['photo'=>$file_name  ,'name_en'=>$offers->name_en,'name_ar'=>$offers->name_ar,'price'=>$offers->price,'details_en'=>$offers->details_en,'details_ar'=>$offers->details_ar ]);
@@ -88,7 +49,6 @@ class CrudController extends Controller
         {
             return redirect()->back();
         }
-
 
             return view ('offers.edit')->with('offer', $offer) ;
 
