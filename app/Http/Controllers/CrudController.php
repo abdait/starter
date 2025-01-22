@@ -9,6 +9,7 @@ use App\Http\Traids\OffersTraid;
 
 class CrudController extends Controller
 {
+
     public function index (){
 
         $offer = Offer::select('id','name_'.LaravelLocalization::getCurrentLocale() .' as name','price','details_'.LaravelLocalization::getCurrentLocale().' as details' )-> get();
@@ -62,7 +63,10 @@ class CrudController extends Controller
 
 
 
-       $file_name=$this-> saveImages($offers->photo , 'images/offers');
+       $offersTraid = new OffersTraid();
+       $file_name = $offersTraid->saveImages($offers->photo, 'images/offers');
+
+
 
 
 
