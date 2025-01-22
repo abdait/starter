@@ -83,7 +83,7 @@
 
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">{{ __('messages.offers') }}</h4>
-        <form class="needs-validation" novalidate method="POST" action="{{ route('offers.store') }}">
+        <form class="needs-validation" novalidate method="POST" action="{{ route('offers.store') }}"  enctype="multipart/form-data">
           <div class="row g-3">
             @csrf
             <div class="col-sm-12">

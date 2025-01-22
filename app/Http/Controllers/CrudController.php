@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Traids\OffersTraid;
 
 class CrudController extends Controller
 {
@@ -52,9 +51,6 @@ class CrudController extends Controller
 
     }
     public function store (OfferRequest $offers){
-
-
-
        // $messages = $this->getmessages();
        // $rules = $this ->getrules();
        // $validator = Validator::make($offers->all(), $rules,$messages);
@@ -63,10 +59,23 @@ class CrudController extends Controller
        //     return redirect()->back()->withErrors($validator)->withInput($offers->all());
        // }
 
-        Offer::create(['name_en'=>$offers->name_en,'name_ar'=>$offers->name_ar,'price'=>$offers->price,'details_en'=>$offers->details_en,'details_ar'=>$offers->details_ar ]);
+
+
+
+       $file_name=$this-> saveImages($offers->photo , 'images/offers');
+
+
+
+
+        Offer::create(['photo'=>$file_name  ,'name_en'=>$offers->name_en,'name_ar'=>$offers->name_ar,'price'=>$offers->price,'details_en'=>$offers->details_en,'details_ar'=>$offers->details_ar ]);
         return redirect()->back()->with(['Success'=>__('messages.Success')]);
 
     }
+
+
+
+
+
 
     public function edit ($offer_id){
 
