@@ -87,8 +87,17 @@
           <div class="row g-3">
             @csrf
             <div class="col-sm-12">
+                <label for="firstName" class="form-label">{{ __('messages.photo') }}</label>
+                <input type="file" class="form-control" name="photo" >
+                @error('photo')
+                <small class='text-danger text-center text-small'>
+                      {{ $message }}
+                  </small>
+                @enderror
+              </div>
+            <div class="col-sm-12">
               <label for="firstName" class="form-label">{{ __('messages.name en') }}</label>
-              <input type="text" class="form-control" name="name_en" id="firstName">
+              <input type="text" class="form-control" name="name_en" >
               @error('name_en')
               <small class='text-danger text-center text-small'>
                     {{ $message }}
@@ -97,7 +106,7 @@
             </div>
             <div class="col-sm-12">
               <label for="firstName" class="form-label">{{ __('messages.name ar') }}</label>
-              <input type="text" class="form-control" name="name_ar" id="firstName">
+              <input type="text" class="form-control" name="name_ar" >
               @error('name_ar')
               <small class='text-danger text-center text-small'>
                     {{ $message }}
@@ -106,7 +115,7 @@
             </div>
             <div class="col-sm-12">
               <label for="lastName" class="form-label">{{ __('messages.price') }}</label>
-              <input type="text" class="form-control" name="price" id="lastName"  >
+              <input type="text" class="form-control" name="price"   >
               @error('price')
                <small class='text-danger text-center text-small' >
                 {{ $message }}

@@ -11,6 +11,7 @@ return[
     "details table" => " details",
     "actions table" => " actions",
     "edit table" => " edit",
+    "photo"=> "photo",
 
     "name en" => "english name",
     "name ar" => "arabic name",

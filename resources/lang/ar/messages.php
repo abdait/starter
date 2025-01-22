@@ -11,7 +11,7 @@ return[
 "details table" => " شرح",
 "actions table" => " تعليمات",
 "edit table" => " تحديث",
-
+"photo"=> "صورة",
 
 "name en" => "انجليزي الاسم",
 "name ar" => "عربي الاسم",
