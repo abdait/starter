@@ -9,6 +9,8 @@ return[
 
     "name table" => " name",
     "details table" => " details",
+    "actions table" => " actions",
+    "edit table" => " edit",
 
     "name en" => "english name",
     "name ar" => "arabic name",
@@ -20,7 +22,7 @@ return[
 
     'Success'=>'the offers add successfully',
 
-    
+
     'name_en required' => "name is required",
     'name_en unique' => "name is unique",
     'name_en max' => "name is max 100",

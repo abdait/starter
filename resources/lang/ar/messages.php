@@ -9,6 +9,9 @@ return[
 
 "name table" => " الاسم",
 "details table" => " شرح",
+"actions table" => " تعليمات",
+"edit table" => " تحديث",
+
 
 "name en" => "انجليزي الاسم",
 "name ar" => "عربي الاسم",

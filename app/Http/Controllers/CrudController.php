@@ -68,6 +68,34 @@ class CrudController extends Controller
 
     }
 
+    public function edit ($offer_id){
+
+        $offer = Offer::select()->find($offer_id);
+        if (!$offer)
+        {
+            return redirect()->back();
+        }
+
+
+            return view ('offers.edit')->with('offer', $offer) ;
+
+
+
+    }
+
+    public function update (OfferRequest $request ,  $offer_id){
+
+
+        $offer = Offer::find($offer_id);
+        $offer -> update($request->all());
+
+        //$offer -> update(['name_en'=>$request->name_en,'name_ar'=>$request->name_ar,'price'=>$request->price,'details_en'=>$request->details_en,'details_ar'=>$request->details_ar ]);
+         return redirect()->back()->with(['Success'=>__('messages.Success')]);
+
+     }
+
+
+
 
 
 

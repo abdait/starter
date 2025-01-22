@@ -59,6 +59,10 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
              Route::get('create', [App\Http\Controllers\CrudController::class, 'create'])->name('offers.create');
              Route::post('store', [App\Http\Controllers\CrudController::class, 'store'])->name('offers.store');
 
+             Route::get('edit/{offer_id}', [App\Http\Controllers\CrudController::class, 'edit'])->name('offers.edit');
+             Route::post('update/{offer_id}', [App\Http\Controllers\CrudController::class, 'update'])->name('offers.update');
+
+
         });
 
      } );
