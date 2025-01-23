@@ -75,45 +75,10 @@
 
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="{{URL::asset('assets/brand/bootstrap-logo.svg')}}" alt="" width="72" height="57">
-      <h2>{{ __('messages.offers') }}</h2>
+      <h2>video viewer ({{ $video->viewers }}) </h2>
 
     </div>
 
-    <div class="row g-5">
-
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">{{__('messages.name table')}}</th>
-                <th scope="col">{{__('messages.price')}}</th>
-                <th scope="col">{{__('messages.details table')}}</th>
-                <th scope="col">{{__('messages.photo')}}</th>
-                <th scope="col">{{__('messages.actions table')}}</th>
-              </tr>
-            </thead>
-            <tbody>
-               @foreach ( $offers  as $offer)
-                <tr>
-                    <th scope="row">{{$offer->id}}</th>
-                    <td>{{$offer->name}}</td>
-                    <td>{{$offer->price}}</td>
-                    <td>{{$offer->details}}</td>
-                    <td> <img src="{{asset('images/offers/'.$offer->photo) }}" alt="Photo" style="width: 50px; height: 50px;"> </td>
-                    <td><a href="{{url('offers/edit/'.$offer->id) }}" class="btn btn-success">{{__('messages.edit table')}}</a> 
-                        <form action="{{ route('offers.delete', $offer->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this offer?')">
-                                {{__('messages.delete table')}}
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-               @endforeach
-            </tbody>
-          </table>
-    </div>
   </main>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">

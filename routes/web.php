@@ -62,7 +62,10 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
              Route::get('edit/{offer_id}', [App\Http\Controllers\CrudController::class, 'edit'])->name('offers.edit');
              Route::post('update/{offer_id}', [App\Http\Controllers\CrudController::class, 'update'])->name('offers.update');
 
+             Route::delete('delete/{offer_id}', [App\Http\Controllers\CrudController::class, 'delete'])->name('offers.delete');
 
         });
+
+        Route::get('youtube', [App\Http\Controllers\CrudController::class, 'Youtube'])->name('offers.Youtube');
 
      } );
