@@ -69,3 +69,13 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
         Route::get('youtube', [App\Http\Controllers\CrudController::class, 'Youtube'])->name('offers.Youtube');
 
      } );
+
+     ////////////ajax offers route///////////////
+
+     Route::group(['prefix'=>'ajax_offers'], function (){
+                  
+       
+        Route::post('store', [App\Http\Controllers\OfferController::class, 'store'])->name('ajax.offers.store');
+        Route::get('create', [App\Http\Controllers\OfferController::class, 'create']);
+
+     });
