@@ -73,9 +73,15 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
      ////////////ajax offers route///////////////
 
      Route::group(['prefix'=>'ajax_offers'], function (){
-                  
-       
+
+
         Route::post('store', [App\Http\Controllers\OfferController::class, 'store'])->name('ajax.offers.store');
         Route::get('create', [App\Http\Controllers\OfferController::class, 'create']);
+
+        Route::get('index', [App\Http\Controllers\OfferController::class, 'index'])->name('ajax.offers.index');
+        Route::post('delete', [App\Http\Controllers\OfferController::class, 'delete'])->name('ajax.offers.delete');
+
+        Route::get('edit', [App\Http\Controllers\OfferController::class, 'edit'])->name('ajax.offers.edit');
+        Route::post('update', [App\Http\Controllers\OfferController::class, 'update'])->name('ajax.offers.update');
 
      });
