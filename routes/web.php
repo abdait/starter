@@ -18,8 +18,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
+Route::get('/not_adult', function () {
+    return 'not adult';
+})->name('not_adult');
 //parameters
 
 Route::get('/test1/{id}', function ($id) {
@@ -85,3 +88,18 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
         Route::post('update', [App\Http\Controllers\OfferController::class, 'update'])->name('ajax.offers.update');
 
      });
+
+
+     ////////////authentication and guards///////////////
+
+     Route::group(['middleware'=>'checkAge'], function (){
+
+
+           Route::get('adult', [App\Http\Controllers\Auth\CustomAuthController::class, 'adult']);
+    });
+
+    Route::get('site', [App\Http\Controllers\Auth\CustomAuthController::class, 'site'])->name('site')->middleware('auth:site');
+    Route::get('admins', [App\Http\Controllers\Auth\CustomAuthController::class, 'admin'])->name('admin')->middleware('auth:admin');
+    
+    Route::get('admins/login', [App\Http\Controllers\Auth\CustomAuthController::class, 'login'])->name('admin.login');
+    Route::post('admins/login', [App\Http\Controllers\Auth\CustomAuthController::class, 'checklogin'])->name('save.admin.login');
