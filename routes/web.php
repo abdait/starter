@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SocialController;
-
+use App\Models\User;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
 
         });
 
-        Route::get('youtube', [App\Http\Controllers\CrudController::class, 'Youtube'])->name('offers.Youtube');
+        Route::get('youtube', [App\Http\Controllers\CrudController::class, 'Youtube'])->name('offers.Youtube')->middleware('auth');
 
      } );
 
@@ -103,3 +103,12 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
     
     Route::get('admins/login', [App\Http\Controllers\Auth\CustomAuthController::class, 'login'])->name('admin.login');
     Route::post('admins/login', [App\Http\Controllers\Auth\CustomAuthController::class, 'checklogin'])->name('save.admin.login');
+
+
+    
+    ///////////////////begin relations///////////////
+
+    Route::get('has_one', [App\Http\Controllers\Relations\RelationController::class, 'has_one'])->name('has_one');
+    Route::get('has_one_revers', [App\Http\Controllers\Relations\RelationController::class, 'has_one_revers'])->name('has_one_revers');
+       
+    ///////////////////end relations/////////////////

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,4 +46,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    
+    ///////////////////begin relations///////////////
+
+
+    public function phone(){
+        return $this ->hasOne('App\Models\Phone','user_id');
+    }
+
+    ///////////////////end relations/////////////////
+
+
+
 }
