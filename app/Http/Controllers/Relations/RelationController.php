@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Relations;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hospital;
 use App\Models\Phone;
 use Illuminate\Http\Request;
 
@@ -21,4 +22,28 @@ class RelationController extends Controller
 
        return response()->json($phone);
     }
+
+    public function hospital_has_many(){
+        $hospital = Hospital::where('id',1)->with('doctor')->get();
+
+       return response()->json($hospital);
+    }
+
+    public function hospital_list(){
+        $hospital = Hospital::with('doctor')->get();
+
+        return view ('hospitals.hospital')->with('hospitals', $hospital) ;
+    }
+
+    public function doctors_list($hospital_id){
+
+
+        $hospitals = Hospital::where('id',$hospital_id)->with('doctor')->get();
+
+        $doctors = $hospitals[0]->doctor; ;
+
+       return view ('hospitals.doctor')->with('doctors', $doctors) ;
+    }
+
+
 }

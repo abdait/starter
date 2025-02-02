@@ -100,15 +100,26 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
 
     Route::get('site', [App\Http\Controllers\Auth\CustomAuthController::class, 'site'])->name('site')->middleware('auth:site');
     Route::get('admins', [App\Http\Controllers\Auth\CustomAuthController::class, 'admin'])->name('admin')->middleware('auth:admin');
-    
+
     Route::get('admins/login', [App\Http\Controllers\Auth\CustomAuthController::class, 'login'])->name('admin.login');
     Route::post('admins/login', [App\Http\Controllers\Auth\CustomAuthController::class, 'checklogin'])->name('save.admin.login');
 
 
-    
-    ///////////////////begin relations///////////////
+
+    ///////////////////begin relations one to one///////////////
 
     Route::get('has_one', [App\Http\Controllers\Relations\RelationController::class, 'has_one'])->name('has_one');
     Route::get('has_one_revers', [App\Http\Controllers\Relations\RelationController::class, 'has_one_revers'])->name('has_one_revers');
-       
+
     ///////////////////end relations/////////////////
+
+        ///////////////////begin relations one to many///////////////
+
+        Route::get('hospital_has_many', [App\Http\Controllers\Relations\RelationController::class, 'hospital_has_many'])->name('hospital_has_many');
+        Route::get('has_one_revers', [App\Http\Controllers\Relations\RelationController::class, 'has_one_revers'])->name('has_one_revers');
+
+        Route::get('hospital_list', [App\Http\Controllers\Relations\RelationController::class, 'hospital_list'])->name('hospital_list');
+        Route::get('doctors_list/{hospital_id}', [App\Http\Controllers\Relations\RelationController::class, 'doctors_list'])->name('doctors_list');
+
+
+        ///////////////////end relations/////////////////
