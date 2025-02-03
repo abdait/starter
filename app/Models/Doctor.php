@@ -18,4 +18,8 @@ class Doctor extends Model
     public function hospital(){
         return $this ->belongsTo('App\Models\hospital','hospital_id','id');
      }
+
+     public function service(){
+        return $this ->belongsToMany('App\Models\Service','doctor_service','doctor_id','service_id','id','id');
+     }
 }

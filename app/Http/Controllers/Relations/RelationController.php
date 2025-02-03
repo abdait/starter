@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Relations;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\Hospital;
 use App\Models\Phone;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -45,5 +47,39 @@ class RelationController extends Controller
        return view ('hospitals.doctor')->with('doctors', $doctors) ;
     }
 
+
+    public function DoctorService(){
+
+
+        return $doctor = Doctor::with('service')->find(3);
+
+       // return $doctor->service;
+
+    }
+
+    public function list_DoctorService($doctor_id){
+
+
+        $doctor = Doctor::where('id',$doctor_id)->with('service')->get();
+
+        $service = $doctor[0]->service ;
+
+
+        $doctors = Doctor::select('id','name')->get();
+        $services = Service::select('id','name')->get();
+
+       return view ('hospitals.service')->with('services', $service)->with('doctors', $doctors)->with('servicess', $services) ;
+    }
+
+    public function doctor_to_services(Request $request){
+
+
+        $doctor = Doctor::find($request->doctor_id);
+// attach                    //sync
+        $doctor->service()->syncWithoutDetaching ($request->service_id);
+
+        return 'success';
+
+    }
 
 }

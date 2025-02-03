@@ -83,12 +83,12 @@
 
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">{{ __('messages.offers') }}</h4>
-        <form class="needs-validation" novalidate method="POST" action="{{ route('offers.store',$offer->id) }}">
+        <form class="needs-validation" novalidate method="POST" action="{{ route('offers.store') }}">
           <div class="row g-3">
             @csrf
             <div class="col-sm-12">
               <label for="firstName" class="form-label">{{ __('messages.name en') }}</label>
-              <input type="text" class="form-control" name="name_en"  value="{{ $offer->name_en }}" >
+              <input type="text" class="form-control" name="name_en"   >
               @error('name_en')
               <small class='text-danger text-center text-small'>
                     {{ $message }}
@@ -97,7 +97,7 @@
             </div>
             <div class="col-sm-12">
               <label for="firstName" class="form-label">{{ __('messages.name ar') }}</label>
-              <input type="text" class="form-control" name="name_ar"  value="{{ $offer->name_ar }}">
+              <input type="text" class="form-control" name="name_ar" >
               @error('name_ar')
               <small class='text-danger text-center text-small'>
                     {{ $message }}
@@ -106,7 +106,7 @@
             </div>
             <div class="col-sm-12">
               <label for="lastName" class="form-label">{{ __('messages.price') }}</label>
-              <input type="text" class="form-control" name="price"  value="{{ $offer->price }}" >
+              <input type="text" class="form-control" name="price"   >
               @error('price')
                <small class='text-danger text-center text-small' >
                 {{ $message }}
@@ -116,7 +116,7 @@
             </div>
             <div class="col-sm-12">
                 <label for="lastName" class="form-label">{{ __('messages.details en') }}</label>
-                <input type="text" class="form-control" name="details_en" id="lastName" value="{{ $offer->details_en }}" >
+                <input type="text" class="form-control" name="details_en" id="lastName" >
                 @error('details_en')
                 <small class='text-danger text-center text-small'>
                     {{ $message }}
@@ -126,7 +126,7 @@
               </div>
               <div class="col-sm-12">
                 <label for="lastName" class="form-label">{{ __('messages.details ar') }}</label>
-                <input type="text" class="form-control" name="details_ar" id="lastName" value="{{ $offer->details_ar }}"  >
+                <input type="text" class="form-control" name="details_ar" id="lastName"   >
                 @error('details_ar')
                 <small class='text-danger text-center text-small'>
                     {{ $message }}
@@ -136,7 +136,7 @@
               </div>
 
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">{{ __('messages.edit table') }}</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">{{ __('messages.save') }}</button>
         </form>
       </div>
     </div>

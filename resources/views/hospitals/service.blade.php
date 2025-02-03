@@ -86,8 +86,8 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">name</th>
-                <th scope="col">title</th>
-                <th scope="col">opration</th>
+
+
 
 
               </tr>
@@ -95,12 +95,10 @@
             <tbody>
 
 
-               @foreach ( $doctors  as $doctor)
+               @foreach ( $services  as $service)
                 <tr>
-                    <th scope="row">{{$doctor->id}}</th>
-                    <td>{{$doctor->name}}</td>
-                    <td>{{$doctor->title}}</td>
-                    <td><a href="{{ Route('list_DoctorService',$doctor->id) }}" class="btn btn-success"> services </a></td>
+                    <th scope="row">{{$service->id}}</th>
+                    <td>{{$service->name}}</td>
 
                @endforeach
 
@@ -108,6 +106,43 @@
           </table>
     </div>
   </main>
+
+  <div class="row g-5">
+
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">add </h4>
+      <form class="needs-validation" novalidate method="POST" action="{{ route('doctor_to_services') }}">
+        <div class="row g-3">
+          @csrf
+          <div class="col-sm-12">
+            <label for="firstName" class="form-label">doctor</label>
+            <input type="text" class="form-control" name="name_en"  value="" >
+
+            <select name="doctor_id" class="form-control" >
+                @foreach ($doctors as $doctor )
+                    <option value="{{$doctor->id}}">{{ $doctor->name }}</option>
+                @endforeach
+
+            </select>
+          </div>
+
+          <div class="col-sm-12">
+            <label for="firstName" class="form-label">service</label>
+            <input type="text" class="form-control" name="name_en"  value="" >
+
+            <select name="service_id[]" class="form-control" multiple >
+                @foreach ($servicess as $service )
+                    <option value="{{$service->id}}">{{ $service->name }}</option>
+                @endforeach
+            </select>
+          </div>
+
+
+         <button class="w-100 btn btn-primary btn-lg" type="submit">add</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2017–2021 Company Name</p>

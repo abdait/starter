@@ -123,3 +123,14 @@ Route::get('/fillable', [App\Http\Controllers\CrudController::class, 'get_offers
 
 
         ///////////////////end relations/////////////////
+
+        ///////////////////begin relations many to many///////////////
+
+    Route::get('doctor/service', [App\Http\Controllers\Relations\RelationController::class, 'DoctorService'])->name('DoctorService');
+
+
+
+    Route::post('doctor_to_services', [App\Http\Controllers\Relations\RelationController::class, 'doctor_to_services'])->name('doctor_to_services');
+
+    Route::get('doctor/service/{doctor_id}', [App\Http\Controllers\Relations\RelationController::class, 'list_DoctorService'])->name('list_DoctorService');
+    ///////////////////end relations/////////////////
